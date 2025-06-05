@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../config/config.env') });
 
 const transporter = nodemailer.createTransport({
-  host: process.env.MAILTRAP_HOST,
-  port: process.env.MAILTRAP_PORT,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
   auth: {
-    user: process.env.MAILTRAP_USER,
-    pass: process.env.MAILTRAP_PASS,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
 });
 
@@ -27,9 +29,9 @@ router.post("/send-confirmation-email", async (req, res) => {
   const mailOptions = {
     from: '"Ecart" <no-reply@ecart.com>',
     to: shippingInfo.email,
-    subject: "Order Confirmation - Ecart",
+    subject: "✅ Order Confirmed - Ecart ",
     html: `
-      <h2>Thank you for your order!</h2>
+      <h2>Thank you for your purchase!</h2>
       <h3>Shipping Info:</h3>
       <p>Name: ${shippingInfo.fullName}</p>
       <p>Phone: ${shippingInfo.phone}</p>
