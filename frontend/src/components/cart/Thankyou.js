@@ -23,6 +23,7 @@ export default function Thankyou() {
         };
 
         sendEmail();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
