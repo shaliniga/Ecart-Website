@@ -4,7 +4,9 @@
   "description": "Ecommerce website using MERN Stack.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "build": "npm install --prefix frontend && npm run build --prefix frontend",
     "seeder": "node backend/utils/seeder.js"
   },
   "author": "Shalini",
